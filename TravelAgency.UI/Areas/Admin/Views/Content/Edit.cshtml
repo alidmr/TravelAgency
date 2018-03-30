@@ -1,0 +1,163 @@
+﻿@model TravelAgency.BusinessLayer.Content
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<link href="~/Content/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea', //nesne seçimi
+        height: 500, //yükseklik ayarı
+        theme: 'modern',
+
+        //eklenti ve toolbar nesne seçimleri.
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons codesample',
+
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+
+        //editör içerisinde kullanılacak css style kaynak yolu
+        content_css: [
+            '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        ]
+    });
+</script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>İçeriği Güncelle</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("index","home",new { area="admin"})">Anasayfa</a>
+            </li>
+            <li>
+                <a href="@Url.Action("index","content",new { area="admin"})">İçerikler</a>
+            </li>
+            <li class="active">
+                <strong>İçeriği Güncelle</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight no-padding">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table table-bordered" style="background: #f9f9f9;">
+                        @using (Html.BeginForm("edit", "content", new { area = "admin" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <tbody>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                <tr>
+                                    <td>İçerik Başlığı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>İçerik Detayı</td>
+                                    <td>
+                                        @Html.TextAreaFor(model => model.Detail, 25, 25, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ön Panel</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Panel, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Panel, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fiyat</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Konum</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                               
+
+                                <tr>
+                                    <td>Başlangıç Tarihi</td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.StartDate, new { @class = "input-group date form-control" })
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bitiş Tarihi</td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.FinishDate, new { @class = "input-group date form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>İçerik Derecesi</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kişi Sayısı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.NumberPeople, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kategori</td>
+                                    <td>
+                                        @Html.DropDownList("Category_Id", null, htmlAttributes: new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success">Güncelle</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/admin/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    $('.input-group.date').datepicker({
+        todayBtn: "linked",
+        format: "dd.mm.yyyy",
+        keyboardNavigation: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+</script>

@@ -1,0 +1,62 @@
+﻿@model TravelAgency.Entities.ContentViewModel
+
+@{
+    ViewBag.Title = "deneme";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>deneme</h2>
+
+<div class="wrapper wrapper-content animated fadeInRight no-padding">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table table-bordered" style="background: #f9f9f9;">
+                        @using (Html.BeginForm("deneme", "content", FormMethod.Post, new { area = "admin", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <tbody>
+                                <tr>
+                                    <td>İçerik Başlığı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Content_Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>İçerik Detayı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Content_Detail, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ön Panel</td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => model.IsPanel, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Görseller</td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.Image, "", new { @type = "file", @multiple = "multiple", @class = "form-control" })
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" id="KaydetData" class="btn btn-success">Kaydet</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

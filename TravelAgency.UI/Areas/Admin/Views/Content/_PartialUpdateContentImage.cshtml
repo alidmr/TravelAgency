@@ -1,0 +1,33 @@
+﻿@model TravelAgency.BusinessLayer.ContentImage
+
+
+@using (Html.BeginForm("UpdateImage", "Content", FormMethod.Post, new { area = "admin", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Önceki Resim", htmlAttributes: new { @class = "col-md-12" })
+            <div class="col-md-12">
+                <img src="~/@Model.Original_Image_Path" alt="" width="300" height="200" />
+                @Html.Hidden("Original_Image_Path", Model.Original_Image_Path)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Yeni Resim Yükle", htmlAttributes: new { @class = "col-md-12" })
+            <div class="col-md-12">
+                @*@Html.TextBoxFor(model => model.Original_Image_Path, new { @type="file",@class="form-control"})*@
+                <input type="file" name="fuImage" id="fuImage" class="form-control" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

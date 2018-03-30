@@ -1,0 +1,60 @@
+﻿@model TravelAgency.BusinessLayer.Role
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Rolü Güncelle</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("index","home",new { area="admin"})">Anasayfa</a>
+            </li>
+            <li>
+                <a href="@Url.Action("index","role",new { area="admin"})">Roller</a>
+            </li>
+            <li class="active">
+                <strong>Rolü Güncelle</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight no-padding">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table table-bordered" style="background: #f9f9f9;">
+                        @using (Html.BeginForm("edit", "role", new { area = "admin" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <tbody>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                <tr>
+                                    <td>Rol Adı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Role_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Role_Name, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success">Güncelle</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

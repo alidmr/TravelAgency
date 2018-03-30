@@ -1,0 +1,228 @@
+﻿
+@model TravelAgency.Entities.ContentViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+
+<script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea', //nesne seçimi
+        height: 300, //yükseklik ayarı
+        theme: 'modern',
+
+        //eklenti ve toolbar nesne seçimleri.
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons codesample',
+
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+
+        //editör içerisinde kullanılacak css style kaynak yolu
+        content_css: [
+            '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        ]
+    });
+</script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Yeni İçerik Ekle</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("index","home",new { area="admin"})">Anasayfa</a>
+            </li>
+            <li>
+                <a href="@Url.Action("index","content",new { area="admin"})">İçerikler</a>
+            </li>
+            <li class="active">
+                <strong>Yeni İçerik Ekle</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight no-padding">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table table-bordered" style="background: #f9f9f9;">
+                        @using (Html.BeginForm("create", "content", FormMethod.Post, new { area = "admin", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <tbody>
+                                <tr>
+                                    <td>İçerik Başlığı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Content_Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>İçerik Detayı</td>
+                                    <td>
+                                        @Html.TextAreaFor(model => model.Content_Detail, 25, 25, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ön Panel</td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => model.IsPanel, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fiyat</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Konum</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Başlangıç Tarihi</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bitiş Tarihi</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control",@type="date" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>İçerik Derecesi</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kişi Sayısı</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.NumberPeople, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kategori</td>
+                                    <td>
+                                        @Html.DropDownList("Category", null, new { htmlAttributes = new { @class = "form-control" } })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Görseller</td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.Image, "", new { @type = "file", @multiple = "multiple", @class = "form-control" })
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="submit" id="KaydetData" class="btn btn-success">Kaydet</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DROPZONE -->
+@*<script src="~/Content/admin/js/plugins/dropzone/dropzone.js"></script>*@
+
+@*<script>
+        $(document).ready(function () {
+            debugger
+            var imageList = new Array();
+
+            Dropzone.options.myAwesomeDropzone = {
+
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                parallelUploads: 100,
+                maxFiles: 100,
+
+                // Dropzone settings
+                init: function () {
+                    var myDropzone = this;
+
+                    this.element.querySelector("button[type=submit").addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                    this.on("sendingmultiple", function () {
+                        debugger
+                        imageList = this.files;
+                    });
+                    this.on("successmultiple", function (files, response) {
+                    });
+                    this.on("errormultiple", function (files, response) {
+                    });
+                }
+
+            }
+
+        });
+
+        $('#KaydetData').on('click', function () {
+            debugger
+            var f_data = new FormData()
+            var title = $('#Content_Title').val();
+            var detail = $('#Content_Detail').val();
+            var comingImage = imageList;
+            for (var i = 0; i < comingImage.length; i++) {
+                var dgr = comingImage[i];
+                f_data.append("Image", dgr.prob("files")[0])
+
+            }
+            f_data.append("Content_Title", title)
+            f_data.append("Content_Detail", detail)
+            $.ajax({
+                url: '/Admin/Content/CreateData',
+                type: 'POST',
+                data: f_data,
+                async: false,
+                success: function (data) {
+                    debugger
+                    var sonuc = "İşlem sırasında hata oluştu!";
+                    if (data > 0) {
+                        sonuc = "Kayıt işlemi başarıyla gerçekleşti";
+                        document.location.href = '/admin/content/index';
+                    }
+                    alert(sonuc);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+
+    </script>*@
+

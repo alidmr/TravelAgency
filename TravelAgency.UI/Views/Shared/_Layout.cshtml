@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Alfi Turizm</title>
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body data-color="theme-1">
+    <header class="color-1 hovered menu-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav">
+                        <a href="/" class="logo">
+                            <img src="~/Images/theme-1/logo3.png" style="height:70px;" alt="Alfi Turizm" />
+                        </a>
+                        <div class="nav-menu-icon">
+                            <a href="#"><i></i></a>
+                        </div>
+                        <nav class="menu">
+                            <ul>
+                                <li class="type-1 active">
+                                    <a href="/">Anasayfa<span class="fa fa-angle-down"></span></a>
+                                </li>
+                                <li class="type-1">
+                                    <a href="#">Kurumsal<span class="fa fa-angle-down"></span></a>
+                                    <ul class="dropmenu">
+                                        <li><a href="@Url.Action("about","home")">Tarİhçe</a></li>
+                                        <li><a href="@Url.Action("mission_vision","home")">Mİsyon & Vİzyon</a></li>
+                                    </ul>
+                                </li>
+                                <li class="type-1">
+                                    @Html.Partial("_PartialServices")
+                                </li>
+                                <li class="type-1">
+                                    <a href="@Url.Action("contactus","home")">İletİşİm<span class="fa fa-angle-down"></span></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer class="bg-dark type-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-block">
+                        <img src="~/Images/theme-1/logo5.png" style="height:80px;" alt="" class="logo-footer">
+                        <div class="f_text color-grey-7">
+                            <p style="text-align:justify;">
+                                Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.
+                            </p>
+                        </div>
+                        <div class="footer-share">
+                            <a href="#"><span class="fa fa-facebook"></span></a>
+                            <a href="#"><span class="fa fa-twitter"></span></a>
+                            <a href="#"><span class="fa fa-google-plus"></span></a>
+                            <a href="#"><span class="fa fa-pinterest"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6 no-padding">
+                    <div class="footer-block">
+                        <h6>Seyahat Haberlerİ</h6>
+                        <div class="f_news clearfix">
+                            <a class="f_news-img black-hover" href="#">
+                                <img class="img-responsive" src="~/Images/home_6/news_1.jpg" alt="">
+                                <div class="tour-layer delay-1"></div>
+                            </a>
+                            <div class="f_news-content">
+                                <a class="f_news-tilte color-white link-red" href="#">Mühteşem Mekan</a>
+                                <span class="date-f">18 Mart 2018</span>
+                                <a href="#" class="r-more">detaylı bilgi</a>
+                            </div>
+                        </div>
+                        <div class="f_news clearfix">
+                            <a class="f_news-img black-hover" href="#">
+                                <img class="img-responsive" src="~/Images/home_6/news_2.jpg" alt="">
+                                <div class="tour-layer delay-1"></div>
+                            </a>
+                            <div class="f_news-content">
+                                <a class="f_news-tilte color-white link-red" href="#">mühteşem mekan</a>
+                                <span class="date-f">18 Mart 2018</span>
+                                <a href="#" class="r-more">detaylı bilgi</a>
+                            </div>
+                        </div>
+                        <div class="f_news clearfix">
+                            <a class="f_news-img black-hover" href="#">
+                                <img class="img-responsive" src="~/Images/home_6/news_1.jpg" alt="">
+                                <div class="tour-layer delay-1"></div>
+                            </a>
+                            <div class="f_news-content">
+                                <a class="f_news-tilte color-white link-red" href="#">mühteşem mekan</a>
+                                <span class="date-f">18 Mart 2018</span>
+                                <a href="#" class="r-more">detaylı bilgi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-block">
+                        <h6>Etİketler:</h6>
+                        <a href="#" class="tags-b">uçuşlar</a>
+                        <a href="#" class="tags-b">seyahat</a>
+                        <a href="#" class="tags-b">satış</a>
+                        <a href="#" class="tags-b">yolculuklar</a>
+                        <a href="#" class="tags-b">arabalar</a>
+                        <a href="#" class="tags-b">oteller</a>
+                        <a href="#" class="tags-b">turlar</a>
+                        <a href="#" class="tags-b">rezervasyon</a>
+                        <a href="#" class="tags-b">ülkeler</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-block">
+                        <h6>İletİşİm Bİlgİlerİ</h6>
+                        <div class="contact-info">
+                            <div class="contact-line color-grey-3"><i class="fa fa-map-marker"></i><span>YTÜ Teknopark A1 Blok</span></div>
+                            <div class="contact-line color-grey-3"><i class="fa fa-phone"></i><a href="tel:93123456789">0 212 741 25 53</a></div>
+                            <div class="contact-line color-grey-3"><i class="fa fa-envelope-o"></i><a href="mailto:"><span class="__cf_email__" data-cfemail="f09c95848384829186959cb09d91999cde939f9d">alidemir@alidemir.com</span></a></div>
+                            <div class="contact-line color-grey-3"><i class="fa fa-globe"></i><a href="#"><span class="__cf_email__" data-cfemail="c9ba96bdbba8bfaca589bea6bba5ade7aaa6a4">www.alidemir.com</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-link bg-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright">
+                            <span>&copy; @DateTime.Now.Year Tüm hakları saklıdır. LET'STRAVEL</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/d07b1474/cloudflare-static/email-decode.min.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/idangerous.swiper.min.js"></script>
+    <script src="~/Scripts/jquery.viewportchecker.min.js"></script>
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/jquery.mousewheel.min.js"></script>
+    <script src="~/Scripts/all.js"></script>
+</body>
+</html>

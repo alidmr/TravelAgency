@@ -1,0 +1,15 @@
+﻿@using TravelAgency.BusinessLayer
+@{
+    List<Service> serviceList = new ServiceHelper().GetServicesList();
+}
+
+<a href="#">Hİzmetler<span class="fa fa-angle-down"></span></a>
+<ul class="dropmenu">
+    @foreach (var item in serviceList)
+    {
+        <li>
+            <a href="@Url.Action("index","services",new { id = item.Id })">@item.Title</a>
+        </li>
+    }
+
+</ul>

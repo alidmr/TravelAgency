@@ -1,0 +1,616 @@
+﻿@model List<TravelAgency.BusinessLayer.Category>
+@{
+    ViewBag.Title = "Anasayfa";
+}
+
+@Html.Partial("_Slider")
+
+
+
+@foreach (var item in Model)
+{
+    <div class="main-wraper padd-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="second-title">
+                        <h2>@item.Name</h2>
+                        <p class="color-grey">@item.Description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var content in item.Contents)
+                {
+                    string firstImage = string.Empty;
+                    if (content.ContentImages.Count > 0)
+                    {
+                        if (content.ContentImages.Where(w=>w.Original_Image_Path != "").Count() > 0)
+                        {
+                            firstImage = content.ContentImages.Select(e => e.Original_Image_Path).FirstOrDefault();
+                        }
+                        else
+                        {
+                            firstImage = "Images/home_1/sea_tour_img_1.jpg";
+                        }
+                    }
+                    else
+                    {
+                        firstImage = "Images/home_1/sea_tour_img_1.jpg";
+                    }
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="radius-mask tour-block hover-aqua">
+                            <div class="clip">
+                                <div class="bg bg-bg-chrome act" style="background-image:url(../@firstImage)">
+                                </div>
+                            </div>
+                            <div class="tour-layer delay-1"></div>
+                            <div class="tour-caption">
+                                <div class="vertical-align">
+                                    <h3 class="hover-it">@content.Title</h3>
+
+                                </div>
+                                <div class="vertical-bottom">
+                                    <div class="fl">
+                                    </div>
+                                    <a href="/home/detail/@content.Id" class="c-button b-50 bg-aqua hv-transparent fr"><img src="~/Images/flag_icon.png" alt=""><span>Detaylı Bilgi</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@*<div class="main-wraper">
+        <div class="clip">
+            <div class="bg bg-bg-chrome" style="background-image:url(../Images/home_1/tour_slider_bg.jpg)">
+            </div>
+        </div>
+        <div class="swiper-container" data-autoplay="0" data-loop="1" data-speed="1000" data-slides-per-view="1" id="tour-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-tour padd-90-90">
+                                    <h3>1300 <i class="fa fa-try"></i></h3>
+                                    <div class="rate">
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                    </div>
+                                    <h2>Maldivler tatil paketleri</h2>
+                                    <h5>july <b>19th</b> to july <b>26th</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-tour padd-94-94">
+                                    <h3>1300 <i class="fa fa-try"></i></h3>
+                                    <div class="rate">
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <h2>Maldivler tatil paketleri</h2>
+                                    <h5>july <b>19th</b> to july <b>26th</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-tour padd-94-94">
+                                    <h3>from $960</h3>
+                                    <div class="rate">
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                    </div>
+                                    <h2>Maldives Vacation Packages</h2>
+                                    <h5>july <b>19th</b> to july <b>26th</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-tour padd-94-94">
+                                    <h3>1200 <i class="fa fa-try"></i></h3>
+                                    <div class="rate">
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star color-yellow"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <h2>Maldivler tatil paketleri</h2>
+                                    <h5>july <b>19th</b> to july <b>26th</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination poin-style-1"></div>
+        </div>
+    </div>
+
+    <div class="main-wraper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="second-title">
+                        <h2>Güzel Gezİler</h2>
+                        <p class="color-grey">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-no-padd">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_1.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_2.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_3.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_4.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_5.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_6.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_7.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_8.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="photo-block hover-aqua">
+                        <div class="tour-layer delay-1"></div>
+                        <img src="~/Images/home_1/photo_9.jpg" alt="">
+                        <div class="vertical-align">
+                            <div class="photo-title">
+                                <h4 class="delay-1"><b>Only <span class="color-aqua">$235</span></b></h4>
+                                <a class="hover-it" href="#"><h3>tanıtım gezİsİ</h3></a>
+                                <h5 class="delay-1">Orlando, Air/3 Nights</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wraper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="second-title">
+                        <h2>Özel Teklifler</h2>
+                        <p class="color-grey">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="top-baner arrows">
+                    <div class="swiper-container offers-slider" data-autoplay="5000" data-loop="1" data-speed="500" data-slides-per-view="responsive" data-mob-slides="1" data-xs-slides="2" data-sm-slides="2" data-md-slides="3" data-lg-slides="3" data-add-slides="3">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-val="0">
+                                <div class="offers-block radius-mask">
+                                    <div class="clip">
+                                        <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/offers_slide_1.jpg)">
+                                        </div>
+                                    </div>
+                                    <div class="tour-layer delay-1"></div>
+                                    <div class="vertical-top">
+                                        <div class="rate">
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                        </div>
+                                        <h3>Fransa</h3>
+                                    </div>
+                                    <div class="vertical-bottom">
+                                        <ul class="offers-info">
+                                            <li><b>35</b>tur</li>
+                                            <li><b>24</b>şehir</li>
+                                            <li><b>90</b>otel</li>
+                                        </ul>
+                                        <p>Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir.</p>
+                                        <a href="#" class="c-button bg-aqua hv-aqua-o b-40"><span>detaylı bİlgİ</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-val="1">
+                                <div class="offers-block radius-mask">
+                                    <div class="clip">
+                                        <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/offers_slide_2.jpg)">
+                                        </div>
+                                    </div>
+                                    <div class="tour-layer delay-1"></div>
+                                    <div class="vertical-top">
+                                        <div class="rate">
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                        </div>
+                                        <h3>fransa</h3>
+                                    </div>
+                                    <div class="vertical-bottom">
+                                        <ul class="offers-info">
+                                            <li><b>58</b>tours</li>
+                                            <li><b>49</b>cities</li>
+                                            <li><b>70</b>hotels</li>
+                                        </ul>
+                                        <p>Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                                        <a href="#" class="c-button bg-aqua hv-aqua-o b-40"><span>view more</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-val="2">
+                                <div class="offers-block radius-mask">
+                                    <div class="clip">
+                                        <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/offers_slide_3.jpg)">
+                                        </div>
+                                    </div>
+                                    <div class="tour-layer delay-1"></div>
+                                    <div class="vertical-top">
+                                        <div class="rate">
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                            <span class="fa fa-star color-yellow"></span>
+                                        </div>
+                                        <h3>İspanya</h3>
+                                    </div>
+                                    <div class="vertical-bottom">
+                                        <ul class="offers-info">
+                                            <li><b>88</b>tours</li>
+                                            <li><b>10</b>cities</li>
+                                            <li><b>193</b>hotels</li>
+                                        </ul>
+                                        <p>Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                                        <a href="#" class="c-button bg-aqua hv-aqua-o b-40"><span>view more</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination  poin-style-1 pagination-hidden"></div>
+                    </div>
+                    <div class="swiper-arrow-left offers-arrow"><span class="fa fa-angle-left"></span></div>
+                    <div class="swiper-arrow-right offers-arrow"><span class="fa fa-angle-right"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wraper padd-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="second-title">
+                        <h2>En popüler seyahat ülkeleri</h2>
+                        <p class="color-grey">Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-push-6 col-sm-12">
+                    <div class="popular-desc text-left">
+                        <div class="clip">
+                            <div class="bg bg-bg-chrome act bg-contain" style="background-image:url(../Images/home_1/map_1.png)">
+                            </div>
+                        </div>
+                        <div class="vertical-align">
+                            <h3>İtalya, Avrupa</h3>
+                            <p class="color-grey">Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. </p>
+                            <h4>En İyİ şehİrler</h4>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Roma</a></li>
+                                        <li><a href="#">Venedik</a></li>
+                                        <li><a href="#">Pisa</a></li>
+                                        <li><a href="#">Napoli</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Bologna</a></li>
+                                        <li><a href="#">Florence</a></li>
+                                        <li><a href="#">Genoa</a></li>
+                                        <li><a href="#">Turin</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Milan</a></li>
+                                        <li><a href="#">Capri</a></li>
+                                        <li><a href="#">Matera</a></li>
+                                        <li><a href="#">Pompeii</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#" class="c-button bg-aqua hv-transparent b-50 custom-icon">
+                                <img class="img-hide" src="img/flag_icon.png" alt="">
+                                <img class="img-hov" src="img/flag_icon_aqua.png" alt="">
+                                <span>tüm yerlerİ görüntüle</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-md-pull-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_1.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Maecenas sit amet</a></h4>
+                                    <h5>kişi başına<b class="color-aqua">235 <i class="fa fa-try"></i>'dan</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_2.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Aenean iaculis enim</a></h4>
+                                    <h5><b class="color-aqua">from $180</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_3.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Pellentesque tempus</a></h4>
+                                    <h5><b class="color-aqua">from $195</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_4.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Donec id maximus</a></h4>
+                                    <h5><b class="color-aqua">from $350</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-sm-12">
+                    <div class="popular-desc text-right">
+                        <div class="clip">
+                            <div class="bg bg-bg-chrome act bg-contain" style="background-image:url(../Images/home_1/map_2.png)">
+                            </div>
+                        </div>
+                        <div class="vertical-align">
+                            <h3>fransa, avrupa</h3>
+                            <p class="color-grey">Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. </p>
+                            <h4>en İyİ şehİrler</h4>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Rome</a></li>
+                                        <li><a href="#">Venice</a></li>
+                                        <li><a href="#">Pisa</a></li>
+                                        <li><a href="#">Naples</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Bologna</a></li>
+                                        <li><a href="#">Florence</a></li>
+                                        <li><a href="#">Genoa</a></li>
+                                        <li><a href="#">Turin</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <ul>
+                                        <li><a href="#">Milan</a></li>
+                                        <li><a href="#">Capri</a></li>
+                                        <li><a href="#">Matera</a></li>
+                                        <li><a href="#">Pompeii</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#" class="c-button bg-aqua hv-transparent b-50 custom-icon">
+                                <img class="img-hide" src="img/flag_icon.png" alt="">
+                                <img class="img-hov" src="img/flag_icon_aqua.png" alt="">
+                                <span>tüm yerlerİ görüntüle</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_5.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Donec id maximus</a></h4>
+                                    <h5><b class="color-aqua">from $215</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_6.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Pellentesque tempus</a></h4>
+                                    <h5><b class="color-aqua">from $175</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_7.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Aenean iaculis enim</a></h4>
+                                    <h5><b class="color-aqua">from $150</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="radius-mask popular-img">
+                                <div class="clip">
+                                    <div class="bg bg-bg-chrome act" style="background-image:url(../Images/home_1/popular_travel_img_8.jpg)">
+                                    </div>
+                                </div>
+                                <div class="tour-layer delay-1"></div>
+                                <div class="vertical-bottom">
+                                    <h4><a href="#">Maecenas sit amet</a></h4>
+                                    <h5><b class="color-aqua">from $290</b> per person</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
